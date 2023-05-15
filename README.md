@@ -22,7 +22,7 @@ npm install
 ```
 
 ## Environment Variable Setup
-Set the following environmental variables to use:
+Set the following environment variables to use:
 
 - `SERVER_PORT`= _Port where the server listens_
 - `DB_HOST`= _Address where MySQL server listens_
@@ -32,6 +32,7 @@ Set the following environmental variables to use:
 - `DB_DATABASE`=_Database for the connection_
 - `DB_CONNECTION_LIMIT`=_Maximum number of connections in the pool_
 
+You can also make .env file in the project root directory for the variables management.
 
 ## Usage
 Running server foreground:
