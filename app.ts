@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { SERVER_ENV } from "./src/config/variables";
+import { NODE_ENV, SERVER_ENV } from "./src/config/variables";
 
 const app = express();
 
@@ -7,4 +7,10 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello_World!");
 });
 
-app.listen(SERVER_ENV.PORT);
+if (NODE_ENV !== "test") {
+  app.listen(SERVER_ENV.PORT, () =>{
+    console.log(`Server listening on PORT ${SERVER_ENV.PORT}`)
+  });
+}
+
+export default app;

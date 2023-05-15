@@ -32,15 +32,20 @@ Set the following environment variables to use:
 - `DB_DATABASE`=_Database for the connection_
 - `DB_CONNECTION_LIMIT`=_Maximum number of connections in the pool_
 
-You can also make .env file in the project root directory for the variables management.
+You can also make .env.development or .env.test file in the project root directory for the variables in development or test stage, respectively.
 
 ## Usage
-Running server foreground:
-```
+Running server foreground as production mode:
+```sh
 npm run start
 ```
 
-Running server background and watching for changes:
+Running server background and watching for changes as development mode:
 ```sh
 npm run dev
+```
+
+Running test:
+```sh
+npm run test
 ```
