@@ -14,3 +14,12 @@ export const NODE_ENV = process.env.NODE_ENV;
 export const SERVER_ENV = {
   PORT: process.env.SERVER_PORT
 }
+
+export const DATABASE_ENV = {
+  HOST: process.env.DB_HOST,
+  PORT: Number(process.env.DB_PORT),
+  USER: process.env.DB_USER,
+  PASSWORD: process.env.DB_PASSWORD,
+  DATABASE: process.env.DB_DATABASE,
+  CONNECTION_LIMIT: Number(process.env.DB_CONNECTION_LIMIT)
+}
