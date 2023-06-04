@@ -1,0 +1,8 @@
+CREATE TABLE session (
+  id CHAR(64) NOT NULL,
+  user_id INT NOT NULL,
+  fcm_token VARCHAR(255) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(user_id) REFERENCES user(id) 
+  ON UPDATE CASCADE ON DELETE CASCADE
+);

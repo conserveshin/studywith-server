@@ -2,8 +2,8 @@ import { error } from "console";
 import type { Request, Response, NextFunction } from "express";
 import { WrapperError } from "../types/errors";
 
-const errorHandler 
-  = (
+const errorHandler = (debug: boolean) => {
+  return (
     err: unknown, req: Request, res: Response, next: NextFunction
   ) => {
     if (err instanceof WrapperError) {
@@ -13,8 +13,13 @@ const errorHandler
     }
 
     if (err instanceof Error) {
-      res.send({ message: err.message });
+      if (debug) 
+        res.send({ stack: err.stack });
+      else
+        res.send({ message: err.message });
     }
   }
+}
+
 
 export default errorHandler;
