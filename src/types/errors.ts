@@ -22,3 +22,7 @@ export class DatabaseQueryFailedError extends WrapperError {
 export class NotFoundError extends WrapperError {
   override statusCode = 404;
 }
+
+export class SessionAuthorizationFailedError extends WrapperError {
+  override statusCode = 401;
+}

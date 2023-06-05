@@ -1,5 +1,5 @@
 import { Router } from "express";
-import crypto from "crypto";
+import crypto from "node:crypto";
 import bcrypt from "bcrypt";
 import asyncWrapper from "../utils/asyncWrapper";
 import { isAnyUndefined } from "../utils/inputcheck";
@@ -18,10 +18,8 @@ import {
   DeleteSession, 
   FindSessionInformationByUserId 
 } from "../models/session";
-import { 
-  PASSWORD_ENCRYPTION, 
-  SESSION_ID_ENCRYPTION 
-} from "../config/encryption";
+import { SESSION_ID_ENCRYPTION } from "../config/encryption";
+import { hashSessionId } from "../utils/session";
 
 const loginRouter = Router();
 
@@ -64,10 +62,7 @@ loginRouter.post ("/", asyncWrapper(async (req, res) => {
     = crypto.randomBytes(SESSION_ID_ENCRYPTION.BYTE_LENGTH)
       .toString(SESSION_ID_ENCRYPTION.ENCODING);
   
-  const newSessionIdHash 
-    = crypto.createHash(SESSION_ID_ENCRYPTION.HASH)
-      .update(newSessionId)
-      .digest(SESSION_ID_ENCRYPTION.HASH_ENCODING);
+  const newSessionIdHash = hashSessionId(newSessionId);
 
   await DatabaseController.transact(async (query) => {
     await query(

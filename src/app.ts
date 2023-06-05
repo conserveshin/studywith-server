@@ -3,12 +3,14 @@ import { NODE_ENV, SERVER_ENV } from "./config/environment";
 import errorHandler from "./middleware/errorHandler";
 import { NotFoundError } from "./types/errors";
 import loginRouter from "./routes/login";
+import logoutRouter from "./routes/logout";
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/login", loginRouter);
+app.use("/logout", logoutRouter);
 
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   next(new NotFoundError());
