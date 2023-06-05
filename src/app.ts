@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { NODE_ENV, SERVER_ENV } from "./src/config/variables";
+import { NODE_ENV, SERVER_ENV } from "./config/variables";
 
 const app = express();
 

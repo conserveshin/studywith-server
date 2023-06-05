@@ -1,0 +1,22 @@
+name: DEV-DEPLOY-SSH
+on:
+  push:
+      branches: [ main ]
+      paths:
+        - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }} 
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: 22
+        script: |
+            cd ~/servers/
+            pwd
+            sh studywith-server-dev-deploy.sh

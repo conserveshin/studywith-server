@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "start": "cross-env NODE_ENV=production node ./dist/app.js",
-    "dev": "cross-env NODE_ENV=development nodemon --watch \"*.ts\" --exec \"ts-node\" app.ts",
+    "dev": "cross-env NODE_ENV=development nodemon --watch \"*.ts\" --exec \"ts-node\" src/app.ts",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit"
   },
   "dependencies": {

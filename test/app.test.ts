@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../app';
+import app from '../src/app';
 
 describe("default behavior",() => {
   test("Should response with 'Hello_World!'", async () => {
