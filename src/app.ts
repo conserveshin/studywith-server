@@ -4,6 +4,7 @@ import errorHandler from "./middleware/errorHandler";
 import { NotFoundError } from "./types/errors";
 import loginRouter from "./routes/login";
 import logoutRouter from "./routes/logout";
+import DatabaseController from "./database/DatabaseController";
 
 const app = express();
 
@@ -19,8 +20,14 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
 app.use(errorHandler(NODE_ENV !== "production"));
 
 if (NODE_ENV !== "test") {
-  app.listen(SERVER_ENV.PORT, () =>{
-    console.log(`Server listening on PORT ${SERVER_ENV.PORT}`);
+  DatabaseController.connectDatabase()
+  .then(() => {
+    app.listen(SERVER_ENV.PORT, () =>{
+      console.log(`Server listening on PORT ${SERVER_ENV.PORT}`);
+    });
+  })
+  .catch(reason => {
+    console.error(reason);
   });
 }
 

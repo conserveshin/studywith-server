@@ -5,6 +5,10 @@ import { DatabaseConnectionFailedError } from '../types/errors';
 let pool: mysql.Pool | undefined = undefined;
 
 const connectDatabase = async () => {
+  if (pool !== undefined) {
+    return;
+  }
+
   try {
     pool = await mysql.createPool({
       host: DATABASE_ENV.HOST,
